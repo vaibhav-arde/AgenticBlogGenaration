@@ -9,11 +9,15 @@ load_dotenv()
 
 app=FastAPI()
 
-print(os.getenv("LANGCHAIN_API_KEY"))
+# print(os.getenv("LANGCHAIN_API_KEY"))
 
 os.environ["LANGSMITH_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
 
 ## API's
+@app.get("/")
+async def read_root():
+    return {"message":"Welcome to Agentic Blog Generation"}
+
 
 @app.post("/blogs")
 async def create_blogs(request:Request):
